@@ -1,5 +1,7 @@
 # Linux-File-IO-Systems-locking
-Ex07-Linux File-IO Systems-locking
+# Ex07-Linux File-IO Systems-locking
+# NAME: RATHISH R
+# REG NO:212224240132
 # AIM:
 To Write a C program that illustrates files copying and locking
 
@@ -20,22 +22,76 @@ Execute the C Program for the desired output.
 # PROGRAM:
 
 ## 1.To Write a C program that illustrates files copying 
-
-
+```
+#include <unistd.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdlib.h>
+int main()
+{
+char block[1024];
+int in, out;
+int nread;
+in = open("filecopy.c", O_RDONLY);
+out = open("file.out", O_WRONLY|O_CREAT, S_IRUSR|S_IWUSR);
+while((nread = read(in,block,sizeof(block))) > 0)
+write(out,block,nread);
+exit(0);}
+```
 
 
 
 
 
 ## 2.To Write a C program that illustrates files locking
-
-
-
+```
+//C program that illustrates files locking goes here
+#include <fcntl.h>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
+#include <sys/file.h>
+int main (int argc, char* argv[])
+{ char* file = argv[1];
+ int fd;
+ struct flock lock;
+ printf ("opening %s\n", file);
+ /* Open a file descriptor to the file. */
+ fd = open (file, O_WRONLY);
+// acquire shared lock
+if (flock(fd, LOCK_SH) == -1) {
+    printf("error");
+}else
+{printf("Acquiring shared lock using flock");
+}
+getchar();
+// non-atomically upgrade to exclusive lock
+// do it in non-blocking mode, i.e. fail if can't upgrade immediately
+if (flock(fd, LOCK_EX | LOCK_NB) == -1) {
+    printf("error");
+}else
+{printf("Acquiring exclusive lock using flock");}
+getchar();
+// release lock
+// lock is also released automatically when close() is called or process exits
+if (flock(fd, LOCK_UN) == -1) {
+    printf("error");
+}else{
+printf("unlocking");
+}
+getchar();
+close (fd);
+return 0;
+}
+```
 
 ## OUTPUT
+# filecopy.o
+<img width="978" height="183" alt="Screenshot 2025-10-10 131736" src="https://github.com/user-attachments/assets/387e8809-6b00-46c2-9206-c2e944530fc6" />
 
 
-
+# lock.o
+<img width="841" height="1004" alt="Screenshot 2025-10-10 131903" src="https://github.com/user-attachments/assets/33f63ae6-a4d7-4f9e-9224-d0d28648fff6" />
 
 
 # RESULT:
