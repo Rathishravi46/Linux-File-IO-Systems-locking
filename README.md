@@ -87,11 +87,10 @@ return 0;
 
 ## OUTPUT
 # filecopy.o
-<img width="978" height="183" alt="Screenshot 2025-10-10 131736" src="https://github.com/user-attachments/assets/387e8809-6b00-46c2-9206-c2e944530fc6" />
-
+![Alt text](image-2.png)
 
 # lock.o
-<img width="841" height="1004" alt="Screenshot 2025-10-10 131903" src="https://github.com/user-attachments/assets/33f63ae6-a4d7-4f9e-9224-d0d28648fff6" />
+![Alt text](image-1.png)
 
 
 # RESULT:
